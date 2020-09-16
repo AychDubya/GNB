@@ -6,11 +6,12 @@ module.exports = function(sequelize,DataTypes){
         first_name:DataTypes.STRING,
         last_name:DataTypes.STRING,
         age:DataTypes.INTEGER,
+        bio: DataTypes.STRING,
         email:{
             type:DataTypes.STRING,
             unique: true,
         },
-        phoneNumber:DataTypes.INTEGER, 
+        phoneNumber:DataTypes.INTEGER,
         password:DataTypes.STRING
     
 
