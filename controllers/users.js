@@ -21,8 +21,9 @@ router.post("/createAccount",(req,res)=>{
        last_name:req.body.last_name,
        age:req.body.age,
        email:req.body.email,
-       phoneNumber:JSON.parse (req.body.phoneNumber),
-       password:req.body.password 
+       phoneNumber: req.body.phoneNumber,
+       password:req.body.password,
+       bio: req.body.bio
     }).then(newUser => {
         res.json(newUser);
     }).catch(err=>{
@@ -45,7 +46,11 @@ router.post("/login", (req, res) => {
            if(bcrypt.compareSync(req.body.password,users.password)){
                req.session.user ={
                 first_name:users.first_name,
+                last_name:users.last_name,
+                age: users.age,
                 email:users.email,
+                phoneNumber: users.phoneNumber,
+                bio: users.bio,
                 id:users.id
                }
                res.send(req.session.user);
@@ -80,8 +85,8 @@ router.put("/update/:id", function (req, res) {
                 id: req.params.id
             }
         }
-    ).then(function (dbusers) {
-        res.json(dbusers);
+    ).then(function (db) {
+        res.json(db.users);
     }).catch(function (err) {
         res.status(500).json(err);
     });
@@ -99,6 +104,9 @@ router.delete("/delete/:id", function (req, res) {
     });
 });
 
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.render("You are now logged out");
+})
 
-
-module.exports =router 
+module.exports =router;
