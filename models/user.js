@@ -18,6 +18,7 @@ module.exports = function(sequelize,DataTypes){
     });
 
     users.associate = function(models){
+        users.hasMany(models.events)
 
     };
     users.addHook("beforeCreate", user => {

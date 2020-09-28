@@ -104,9 +104,11 @@ router.delete("/delete/:id", function (req, res) {
     });
 });
 
-router.get('/logout', (req, res) => {
+
+
+router.get("/logout",(req,res)=>{
     req.session.destroy();
-    res.render("You are now logged out");
+    res.send("logout complete!")
 })
 
 module.exports =router;

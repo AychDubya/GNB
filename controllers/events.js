@@ -83,6 +83,11 @@ router.delete("/delete/:id", function (req, res) {
     });
 });
 
+// eventCard.route('/delete').delete(function(req, res) {
+//     let id = req.params.id;
+//     eventCards.findByIdAndRemove(id).exec();
+//     res.redirect('/');
+// });
 
 
 module.exports = router 
