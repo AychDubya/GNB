@@ -1,5 +1,5 @@
 {
-  "name": "gathernowbackend",
+  "name": "gnb",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AychDubya/gathernowbackend.git"
+    "url": "git+https://github.com/AychDubya/GNB.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AychDubya/gathernowbackend/issues"
+    "url": "https://github.com/AychDubya/GNB/issues"
   },
-  "homepage": "https://github.com/AychDubya/gathernowbackend#readme",
+  "homepage": "https://github.com/AychDubya/GNB#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
