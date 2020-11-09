@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 // const {createRequireFromPath}=require ("module")
 
-
 router.get('/',(req,res)=>{
     db.users.findAll().then(users=>{
         res.json(users)
@@ -14,6 +13,7 @@ router.get('/',(req,res)=>{
         res.status(500).end()
     })
 })
+
 
 router.post("/createAccount",(req,res)=>{
     db.users.create({
@@ -31,29 +31,25 @@ router.post("/createAccount",(req,res)=>{
         res.status(500).end();
     })
 })
-
 router.post("/login", (req, res) => {
     console.log(req.body.email)
     db.users.findOne({
     
         where:{
-            email:req.body.email
+            email: req.body.email
         }
     }).then(users => {
        if(!users){
            res.status(404).send("This user does not exist!");
        }else{
-           if(bcrypt.compareSync(req.body.password,users.password)){
-               req.session.user ={
+           if(bcrypt.compareSync(req.body.password, users.password)){
+               req.session.users ={
                 first_name:users.first_name,
                 last_name:users.last_name,
-                age: users.age,
                 email:users.email,
-                phoneNumber: users.phoneNumber,
-                bio: users.bio,
                 id:users.id
                }
-               res.send(req.session.user);
+               res.send(req.session.users);
            }else{
                res.status(401).send("wrong password ")
         }
@@ -64,10 +60,40 @@ router.post("/login", (req, res) => {
     })
 })
 
+
+
 router.get('/readsessions',(req,res)=>{
     console.log(req.session)
     res.json(req.session);
 })
+
+
+
+
+//Route to get all users Event cards rendered on home page via the event viewer
+// router.get("/userData", (req, res) => {
+//     if (!req.session.user) {
+//         res.status(401).send("login required ")
+//     } else {
+//         db.users.findAll({
+//             where: {
+//                 id: req.session.users.id
+//             },
+//             include: [
+//                 {model:db.events,
+//                     include:[db.EventViewer]
+//                 }, 
+//                 db.events]
+//         }).then(userData => {
+//             res.json(userData)
+//         }).catch(err => {
+//             console.log(err);
+//             res.status(500).end()
+//         })
+//     }
+// })
+
+
 
 
 router.put("/update/:id", function (req, res) {
@@ -93,7 +119,7 @@ router.put("/update/:id", function (req, res) {
 });
 
 router.delete("/delete/:id", function (req, res) {
-    db.Users.destroy({
+    db.users.destroy({
         where: {
             id: req.params.id
         }

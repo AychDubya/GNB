@@ -29,7 +29,7 @@ app.use(session({
 
 app.use('/', allRoutes);
 
-db.sequelize.sync({force:false}).then(function(){
+db.sequelize.sync({force: false}).then(function(){
   const server = app.listen(PORT);
   const io = require('socket.io')(server);
   io.on('connection', socket => {

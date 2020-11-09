@@ -5,7 +5,7 @@ const user = require("./user");
 
 module.exports = function(sequelize,DataTypes){
     var events = sequelize.define('events',{
-       time: DataTypes.TIME,
+        start_time: DataTypes.TIME('%h %i %p'),
         event_category:DataTypes.STRING,
         event_name:DataTypes.STRING,
         event_location:DataTypes.STRING,
